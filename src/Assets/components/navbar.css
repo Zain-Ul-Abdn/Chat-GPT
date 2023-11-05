@@ -1,7 +1,6 @@
 *{
     padding: 0;
     margin: 0;
-
 }
 
 .navbar{
@@ -26,6 +25,8 @@ img:active{
     width: 30px;
     height: 30px;
     margin-left: 2rem;
+    z-index: 999;
+    
 }
 
 .darkMode{

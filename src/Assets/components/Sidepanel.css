@@ -1,0 +1,17 @@
+.container{
+    background-color: #323233;
+    width: 280px ;
+    height: 100vh;
+    /* border-top: 1px solid rgb(62, 61, 61); */
+    position: absolute;
+    top: 0;
+    left: -280px;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+    /* left: 0; */
+
+}
+
+input{
+    display: none;
+}
