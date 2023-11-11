@@ -11,13 +11,22 @@ function Header(props) {
     const [mode, setMode] = useState({
         'color': 'Black',
         'backgroundColor': 'White'
+    })
+
+    const [panellogoPosition, setPanellogoPosition] = useState({
+        'transform': 'translateX(-1px)'
 
     })
+
     const [panelmode, setPanelmode] = useState(darkPanel)
     const [daymode, setDaymode] = useState(moonlogo)
-
     //For SidePanel component
-    let IsPanelHide = false;
+    const [isPanelHide, setIsPanelHide] = useState(false);
+    const [panelStyle, setPanelStyle] = useState({
+        top: '0',
+        left: '0',
+    });
+
 
     useEffect(() => {
         if (check) {
@@ -39,14 +48,42 @@ function Header(props) {
         }
     }, [check])
 
+    useEffect(() => {
+        if (isPanelHide) {
+            setPanelStyle({
+                top: '0',
+                left: '0',
+            });
+        } else {
+            setPanelStyle({
+                top: '0',
+                left: '-280px',
+            });
+        }
+
+    }, [isPanelHide]);
+
     const changeMode = () =>
         (check) ? setCheck(false) : setCheck(true);
 
 
-    function handleclick() {
-        IsPanelHide = (!IsPanelHide) ? true : false;
-        // console.log(IsPanelHide)
-    }
+    const handleclick = () => {
+        setIsPanelHide((prevIsPanelHide) => !prevIsPanelHide);
+        if (!isPanelHide) {
+            setPanellogoPosition({
+                'transform': 'translateX(12rem)'
+            })
+            setPanelmode(lightPanel)
+        }
+        else {
+            (check) ? setPanelmode(lightPanel) : setPanelmode(darkPanel);
+            setPanellogoPosition({
+                'transform': 'translateX(-1px)'
+            })
+        
+        }
+    };
+
 
     return (
         <>
@@ -55,7 +92,8 @@ function Header(props) {
                 <img
                     className='sidePanellogo'
                     src={panelmode}
-                    onClick={handleclick} />
+                    onClick={handleclick}
+                    style={panellogoPosition} />
 
                 <p style={mode}>{props.name}</p>
                 <img
@@ -64,7 +102,7 @@ function Header(props) {
                     onClick={changeMode}
                 />
             </div>
-            <Sidepanel hide={IsPanelHide} />
+            <Sidepanel style={panelStyle} />
         </>
     )
 }
