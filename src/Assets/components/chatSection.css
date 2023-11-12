@@ -1,0 +1,122 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.Chat-container {
+    background-color: #343541;
+    color: white;
+    height: 39.9rem;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.Chat-container>.Chat-Display {
+    transform: translateY(20px);
+    overflow-y: scroll;
+    /* border: 2px solid red; */
+    height: 70vh;
+    width: 100%;
+}
+
+
+.Chat-Display::-webkit-scrollbar{
+    background-color: #323233;
+    width: 8px;
+
+}
+
+.Chat-Display::-webkit-scrollbar-thumb{
+    background-color: rgba(255, 255, 255, 0.686);
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+.userChat,
+.bootChat {
+    display: flex;
+    width: 1528px;
+    padding: 25px 0;
+    margin: 2px 0;
+    box-sizing: content-box;
+
+    /* border: 2px solid red; */
+
+}
+
+.userChat span {
+    background-color: rgb(189, 33, 33);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.userChat p,
+.bootChat p {
+    font-size: 15px;
+    font-weight: 500;
+    width: 800px;
+    transform: translate(24rem, 2px);
+    box-sizing: content-box;
+    height: 100%;
+    white-space: pre-line;
+
+}
+
+.Chat-container .bootChat {
+    background-color: #696a8051;
+}
+
+.bootChat span img,
+.bootChat span,
+.userChat span {
+    width: 35px;
+    height: 34px;
+
+
+}
+
+.bootChat span {
+    background-color: rgba(64, 192, 100, 0.891);
+}
+
+.bootChat span,
+.userChat span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    transform: translateX(23rem);
+
+}
+
+.bootResponse{
+    color: #c6c7d4;
+}
+
+.userInput{
+    width: 800px;
+    border: 2px solid red;
+    margin: auto;
+    display: flex;
+    justify-content: space-been;
+    align-items: center;
+    background-color: #696a8051;
+
+}
+
+.userInput #message-box{
+    /* color: white; */
+    border: 2px solid red;
+    width: 20rem;
+    display: block;
+    border: none;
+    background-color: #696a8000;
+    color: white;
+}
+
+#message-box::placeholder{
+    content: 'Send a message';
+}
