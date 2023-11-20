@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
@@ -24,17 +24,18 @@
 }
 
 
-.Chat-Display::-webkit-scrollbar{
+.Chat-Display::-webkit-scrollbar {
     background-color: #323233;
     width: 8px;
 
 }
 
-.Chat-Display::-webkit-scrollbar-thumb{
+.Chat-Display::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.686);
     border-radius: 5px;
     overflow-y: scroll;
 }
+
 .userChat,
 .bootChat {
     display: flex;
@@ -92,31 +93,100 @@
 
 }
 
-.bootResponse{
+.bootResponse {
     color: #c6c7d4;
 }
 
-.userInput{
+.userInput {
     width: 800px;
-    border: 2px solid red;
-    margin: auto;
+    /* height: 50px; */
+    /* border: 2px solid 0ed; */
+    border-radius: 13px;
+    margin: 10px auto 10px auto;
     display: flex;
-    justify-content: space-been;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 10px;
+    /* position: relative; */
+    /* top: 1.5rem; */
+    transform: translateY(15px);
+    box-sizing: content-box;
+    /* column-gap: 22rem; */
     background-color: #696a8051;
+    /* border: 2px solid green; */
+
+    /* margin-bottom: 15px ; */
 
 }
 
-.userInput #message-box{
+.userInput  #message-box {
     /* color: white; */
-    border: 2px solid red;
-    width: 20rem;
-    display: block;
+    width: 95%;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    resize: none;
     border: none;
+    outline: none;
+    
+    /* border: 2px solid red; */
     background-color: #696a8000;
     color: white;
+
+    overflow-y: auto;
+
+    max-height: 150px ;
 }
 
 #message-box::placeholder{
-    content: 'Send a message';
+    font-weight: 500;
+}
+
+#message-box::-webkit-scrollbar {
+    background-color: #696a8000;
+    width: 8px;
+
+}
+
+#message-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.686);
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+#message-box::before {
+    content: attr(title); /* Display the spell-check suggestion as a pseudo-element content */
+    display: inline-block;
+    visibility: hidden; /* Hide the actual suggestion text */
+}
+
+#message-box:invalid {
+    text-decoration: underline red; /* Style the underline for invalid input (e.g., misspelled words) */
+}
+
+
+
+.userInput button,
+.userInput button img {
+    width: 25px;
+    height: 25px;
+    background-color: none;
+}
+
+.userInput button, .userInput button:active{
+    background-color: #696a8000;
+    border: none;
+}
+
+
+#gptFooter {
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -20px;
+    font-size: 13px;
+    /* margin-top: 10px; */
 }

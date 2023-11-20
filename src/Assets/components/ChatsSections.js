@@ -1,51 +1,75 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './chatSection.css'
 import sendArrowlogo from '../Icons/send_arrow.png'
 import gptlogo from '../Icons/gpt_logo.png'
 
 export default function ChatsSections() {
 
-  const [value, setValue] =  useState('Send a Message')
-  function handleInputChange(e){
-    setValue(e.target.value);
+  const [textareaHeight, setTextareaHeight] = useState('3rem');
+  let textareaRef = useRef(null)
+
+  const maxHeight = 150;
+
+  const adjustTextareaHeight = () => {
+    const textarea = textareaRef.current;
+
+    if (textarea) {
+      textarea.style.height = '3rem'
+      const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+      setTextareaHeight(textarea.scrollHeight < newHeight ? 'auto' : `${newHeight}px`);
+    }
   }
+
+  let messages = []
+
+  let obj = { userVal: 'How are you?', gptResponse: 'I don\'t have feelings' };
+  messages.push(obj)
+
   return (
     <div className='Chat-container'>
+
       <div className="Chat-Display">
-        <div className="userChat">
-          <span className="userImage">Z</span>
-          <p className="userQuestion">How are you?</p>
+        {messages.map(({ userVal, gptResponse }, index) =>
+          <div key={index}>
+            <div className="userChat">
+              <span className="userImage">Z</span>
+              <p className="userQuestion">{userVal}</p>
+            </div>
+            <div className="bootChat">
+              <span className="bootImage">
+                <img src={gptlogo} alt="GPT Logo" />
+              </span>
+              <p className="bootResponse">
+                {gptResponse}
+              </p>
+            </div>
+          </div>
+        )}
 
-        </div>
-
-        <div className="bootChat">
-          <span className="bootImage">
-            <img
-              src={gptlogo} />
-          </span>
-          <p className="bootResponse">
-            I don't have direct access to specific images or their RGB values, including logos related to the OpenAI GPT API. If
-
-            If you are referring to the GPT-3.5 Turbo logo, OpenAI may have specific guidelines on the use ofuthorized information.
-
-          </p>
-        </div>
       </div>
 
       <div className="userInput" >
-      <input
-        type="text"
-        id="message-box"
-        value={value}
-        onChange={handleInputChange}
-      />
+        <textarea
+          id="message-box"
+          // rows="1"
+          placeholder='Send a message'
+          ref={textareaRef}
+          style={{
+            height: textareaHeight,
+          }}
+          onInput={adjustTextareaHeight}
+        />
 
         <button>
           <img
             src={sendArrowlogo} />
         </button>
       </div>
-      <footer>ChatGPT can make mistakes. Consider checking important information.</footer>
-    </div>
+      <footer id='gptFooter'>ChatGPT can make mistakes. Consider checking important information.</footer>
+
+    </div >
+
+
   )
+
 }
