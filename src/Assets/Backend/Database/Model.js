@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
-const mongoCon = require("./Config");
-
- mongoCon()
 
 //Authenticated_Users Collection Schema
-const userSchema = async () =>
-    await new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
     },
@@ -17,17 +13,14 @@ const userSchema = async () =>
         required: true,
         unique: true
     },
-    userPass: {
+    userPass: { 
         type: Number,
         required: true
     }
 });
-const usersCollection = mongoose.model('Authenticated_Users', userSchema)
 
 //GPT_Chats collection Schema
-
-const chatSchema = async () =>
-  await new mongoose.Schema({
+const chatSchema = new mongoose.Schema({
     userChat :{
         type : String
     },
@@ -36,6 +29,7 @@ const chatSchema = async () =>
     }
 });
 
-const chatsCollection = mongoose.model('GPT_Chats',chatSchema)
+const usersCollection = mongoose.model('Authenticated_Users', userSchema);
+const chatsCollection = mongoose.model('GPT_Chats', chatSchema);
 
-module.exports = {usersCollection, chatsCollection}
+module.exports = {usersCollection, chatsCollection};

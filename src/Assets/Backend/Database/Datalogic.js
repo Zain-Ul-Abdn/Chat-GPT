@@ -1,24 +1,22 @@
 const { usersCollection, chatsCollection } = require("./Model");
 
-const InsertUser = async () => {
-    await usersCollection.create({
-      firstName: 'Zain',
-      lastName: 'Khan',
-      userEmail: 'zaini@gmail.com',
-      userPass: '1234'
+const InsertUser = () => {
+    usersCollection.create({
+        firstName: 'Zain',
+        lastName: 'Khan',
+        userEmail: 'zaini@gmail.com',
+        userPass: '1234'
     });
-    
 };
 
-// Queries for GPT_Chats Collection
-
-const InsertChats = async () => {
+const InsertChats = async (user_query, boot_response) => {
     await chatsCollection.create({
-      userChats: "How are you!",
-      gptResponse: "I am an AI so I have no feelings. If you have anything else, feel free to ask.",
+        userChat: user_query,
+        gptResponse: boot_response
     });
+
+    console.log("Data Inserted");
 };
 
-// Call the functions
-// InsertUser();
-// InsertChats();
+
+module.exports = { InsertUser, InsertChats };

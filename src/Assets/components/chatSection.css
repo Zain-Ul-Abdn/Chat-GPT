@@ -99,8 +99,6 @@
 
 .userInput {
     width: 800px;
-    /* height: 50px; */
-    /* border: 2px solid 0ed; */
     border-radius: 13px;
     margin: 10px auto 10px auto;
     display: flex;
@@ -113,13 +111,9 @@
     box-sizing: content-box;
     /* column-gap: 22rem; */
     background-color: #696a8051;
-    /* border: 2px solid green; */
-
-    /* margin-bottom: 15px ; */
-
 }
 
-.userInput  #message-box {
+.userInput #message-box {
     /* color: white; */
     width: 95%;
     font-weight: 400;
@@ -129,17 +123,15 @@
     resize: none;
     border: none;
     outline: none;
-    
+
     /* border: 2px solid red; */
     background-color: #696a8000;
     color: white;
-
     overflow-y: auto;
-
-    max-height: 150px ;
+    max-height: 150px;
 }
 
-#message-box::placeholder{
+#message-box::placeholder {
     font-weight: 500;
 }
 
@@ -156,13 +148,13 @@
 }
 
 #message-box::before {
-    content: attr(title); /* Display the spell-check suggestion as a pseudo-element content */
+    content: attr(title);
     display: inline-block;
-    visibility: hidden; /* Hide the actual suggestion text */
+    visibility: hidden;
 }
 
 #message-box:invalid {
-    text-decoration: underline red; /* Style the underline for invalid input (e.g., misspelled words) */
+    text-decoration: underline red;
 }
 
 
@@ -174,7 +166,8 @@
     background-color: none;
 }
 
-.userInput button, .userInput button:active{
+.userInput button,
+.userInput button:active {
     background-color: #696a8000;
     border: none;
 }
@@ -190,3 +183,42 @@
     font-size: 13px;
     /* margin-top: 10px; */
 }
+
+.Chat-Display .startupMessage {
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.startupMessage img {
+    width: 55px;
+    height: 55px;
+    filter: invert(100%);
+}
+
+.startupMessage p {
+    /* box-sizing: content-box; */
+    /* border: 2px solid red; */
+    text-align: center;
+    width: 20rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2rem;
+
+}
+
+.startupMessage span{
+    /* border: 2px solid red; */
+    border-radius: 100%;
+    background-color: white;
+    width: 55px;
+    height: 55px;
+}
+

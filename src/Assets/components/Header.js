@@ -13,19 +13,11 @@ function Header(props) {
         'backgroundColor': 'White'
     })
 
-    const [panellogoPosition, setPanellogoPosition] = useState({
-        'transform': 'translateX(-1px)'
-
-    })
 
     const [panelmode, setPanelmode] = useState(darkPanel)
     const [daymode, setDaymode] = useState(moonlogo)
-    //For SidePanel component
-    const [isPanelHide, setIsPanelHide] = useState(false);
-    const [panelStyle, setPanelStyle] = useState({
-        top: '0',
-        left: '0',
-    });
+    const changeMode = () =>
+        (check) ? setCheck(false) : setCheck(true);
 
 
     useEffect(() => {
@@ -48,6 +40,18 @@ function Header(props) {
         }
     }, [check])
 
+    //For SidePanel component
+    const [isPanelHide, setIsPanelHide] = useState(false);
+
+    const [panelStyle, setPanelStyle] = useState({
+        top: '0',
+        left: '-280px',
+    });
+    const [panellogoPosition, setPanellogoPosition] = useState({
+        'transform': 'translateX(-1px)'
+
+    })
+
     useEffect(() => {
         if (isPanelHide) {
             setPanelStyle({
@@ -63,10 +67,8 @@ function Header(props) {
 
     }, [isPanelHide]);
 
-    const changeMode = () =>
-        (check) ? setCheck(false) : setCheck(true);
 
-
+    //Set panel_logo_position when panel hide or visible
     const handleclick = () => {
         setIsPanelHide((prevIsPanelHide) => !prevIsPanelHide);
         if (!isPanelHide) {
@@ -80,7 +82,6 @@ function Header(props) {
             setPanellogoPosition({
                 'transform': 'translateX(-1px)'
             })
-        
         }
     };
 
