@@ -14,4 +14,17 @@ const chat = async (req, res) => {
     }
 }
 
-module.exports = chat
+const fetchQueries = async (req, res) => {
+    try {
+        const queries = await chatsCollection.find();
+        res.json({ queries });
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+module.exports = {
+    chat,
+    fetchQueries
+};

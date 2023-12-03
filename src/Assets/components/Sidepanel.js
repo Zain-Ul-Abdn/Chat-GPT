@@ -12,17 +12,27 @@ function Sidepanel(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/gpt/getChat');
+        const response = await fetch('/chats', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json', // Corrected typo in "Content-Type"
+          },
+          body: JSON.stringify(),
+        });
         const jsonData = await response.json();
-        setUser_query(jsonData);
+        setUser_query(jsonData.queries);
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
   
     fetchData();
-  }, []);
+
+  });
   
+  // const Get_queries = () => fetchData();
+
 
   return (
     <div className="container" style={props.style}>
@@ -34,7 +44,7 @@ function Sidepanel(props) {
 
         {user_query.map(data =>
           <div key={data.id} className='messages'>
-            <img src={messagelogo} alt='messagelogo' />
+            <img src={messagelogo} alt='messagelogo'  />
             <p> {data.userChat} </p>
           </div>
         )}
