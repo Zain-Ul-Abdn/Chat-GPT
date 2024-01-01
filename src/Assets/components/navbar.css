@@ -4,8 +4,7 @@
 }
 
 .navbar {
-    background-color: FFFFFF;
-    border: 1px solid black;
+    background-color: #343541;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,6 +35,8 @@ img:active {
     width: 25px;
     height: 25px;
     margin-right: 2rem;
+
+    visibility: hidden;
 }
 
 .darkMode:hover,
@@ -43,7 +44,7 @@ img:active {
     cursor: pointer;
 }
 
-p {
+p{
     width: 196px;
     height: 30px;
     font-size: 24px;

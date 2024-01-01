@@ -1,10 +1,17 @@
+const { usersCollection } = require("../../Database/Model");
+
 const user = async (req, res) => {
 
     try {
-        res.send("It is user section")
+        const { email, password } = req.body
+        await usersCollection.create({
+            userEmail: query,
+            userPass: response
+        });
+        res.status(200).json({ email, password })
     } catch (error) {
-        console.log(error)
+        res.status(500).json({error:"Unable to create users"})
     }
 }
 
-module.exports = user;
+module.exports = {user}

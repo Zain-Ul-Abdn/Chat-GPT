@@ -8,23 +8,38 @@ const chat = async (req, res) => {
             userChat: query,
             gptResponse: response
         });
-        res.json({ query, response })
+        res.status(200).json({ query, response })
     } catch (error) {
-        console.log(error)
+        res.status(500).json({error:"Unable to create gptResponse"})
     }
 }
 
 const fetchQueries = async (req, res) => {
     try {
         const queries = await chatsCollection.find();
-        res.json({ queries });
+        res.status(200).json({ queries });
     }
-    catch (err) {
-        console.log(err);
+    catch (error) {
+        res.status(500).json({ error: "Unable to find any chats" });
     }
 }
 
+//Fetch gptResponse from user_query
+const fetchResponse = async (req, res) => {
+    try 
+    {
+        const userquery = req.params.query;
+        const userData = await User.findById({ userChat: userquery });
+        res.status(200).json({ userData });
+    } 
+    catch (error) 
+    {
+        res.status(500).json({ error: "This query is not asked yet." });
+    }
+};
+
 module.exports = {
     chat,
-    fetchQueries
+    fetchQueries,
+    fetchResponse
 };

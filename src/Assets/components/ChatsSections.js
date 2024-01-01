@@ -2,13 +2,18 @@ import React, { useRef, useState } from 'react'
 import './chatSection.css'
 import sendArrowlogo from '../Icons/send_arrow.png'
 import gptlogo from '../Icons/gpt_logo.png'
-// import {InsertChats}  from '../Backend/Database/Datalogic';
 
 export default function ChatsSections() {
 
   const [textareaHeight, setTextareaHeight] = useState('3rem');
   const [inputValue, setInputValue] = useState('');
   const [gptResponse, setGptResponse] = useState('How can I help you ');
+  
+  const { GoogleGenerativeAI } = require("@google/generative-ai")
+  const genAI = new GoogleGenerativeAI('AIzaSyDRi2rhZ--yCVOkPnyjo2ojABr4FX5cM6M');
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+
 
   const [messages, setMessages] = useState([]);
 
@@ -27,28 +32,33 @@ export default function ChatsSections() {
     }
   }
 
+
+const aiResponse = async (user_prompt) => {
+    const prompt = user_prompt;
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    return text;
+}
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && inputValue.trim() !== '') {
       e.preventDefault();
-
-      setGptResponse(GPT())
-      setMessages([...messages, { userVal: inputValue, gptResponse: gptResponse }]);
-
-      Post_Data();
-
-      setInputValue('');
-      adjustTextareaHeight();
+      try {
+        aiResponse(inputValue).then((response) => {
+          setGptResponse(response);
+          setMessages([...messages, { userVal: inputValue, gptResponse: response }]);
+          console.log("Running");
+          Post_Data();
+          setInputValue('');
+          adjustTextareaHeight();
+        });
+      } catch (error) {
+        console.log("Error",error);
+      }
+     
     }
   };
-
-  //Generate random responses for initial version
-  function GPT() {
-    const responses = ['I am fine', 'I don\'t have feelings', 'How can I help you']
-
-    let random = Math.floor(Math.random() * responses.length);
-
-    return responses.at(random);
-  }
 
   //Send data to server and then save into a mongodb
   const Post_Data = async () => {

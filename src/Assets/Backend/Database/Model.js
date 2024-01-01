@@ -2,19 +2,13 @@ const mongoose = require("mongoose");
 
 //Authenticated_Users Collection Schema
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-    },
-    lastName: {
-        type: String,
-    },
     userEmail: {
         type: String,
         required: true,
         unique: true
     },
     userPass: { 
-        type: Number,
+        type: String,
         required: true
     }
 });
@@ -22,10 +16,12 @@ const userSchema = new mongoose.Schema({
 //GPT_Chats collection Schema
 const chatSchema = new mongoose.Schema({
     userChat :{
-        type : String
+        type : String,
+        required:true
     },
     gptResponse : {
-        type : String
+        type : String,
+        required:true
     }
 });
 

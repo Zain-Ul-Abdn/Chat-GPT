@@ -7,10 +7,11 @@ import lightPanel from '../Icons/light-panel.png'
 import Sidepanel from './Sidepanel'
 
 function Header(props) {
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState(true);
     const [mode, setMode] = useState({
-        'color': 'Black',
-        'backgroundColor': 'White'
+        'color': 'White',
+       ' background-color': '#343541'
+
     })
 
 
@@ -23,8 +24,8 @@ function Header(props) {
     useEffect(() => {
         if (check) {
             setMode({
-                'color': 'white',
-                'backgroundColor': '#323233'
+                'color': 'White',
+                 ' background-color': '#343541'
             })
             setDaymode(sunlogo)
             setPanelmode(lightPanel)
@@ -96,7 +97,8 @@ function Header(props) {
                     onClick={handleclick}
                     style={panellogoPosition} />
 
-                <p style={mode}>{props.name}</p>
+                <p style={mode}
+                className='header'>{props.name}</p>
                 <img
                     className='darkMode'
                     src={daymode}

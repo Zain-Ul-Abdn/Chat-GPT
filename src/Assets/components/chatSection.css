@@ -3,10 +3,14 @@
     margin: 0;
 }
 
+body{
+    overflow: hidden;
+}
+
 .Chat-container {
     background-color: #343541;
     color: white;
-    height: 39.9rem;
+    height: 39.24rem;
     display: flex;
     /* align-items: center; */
     justify-content: space-between;
@@ -22,7 +26,6 @@
     height: 70vh;
     width: 100%;
 }
-
 
 .Chat-Display::-webkit-scrollbar {
     background-color: #323233;
